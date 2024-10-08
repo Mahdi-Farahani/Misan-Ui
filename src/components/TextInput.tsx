@@ -43,7 +43,7 @@ const Input = (
         <input
           {...rest}
           className={cn(
-            'rounded-sm border-sm border-gray px-2 py-[6px] text-xs placeholder:text-darkgray focus:border-secondary focus:outline-none focus:ring-0',
+            'px-2 py-1 border border-green-800',
             {
               'pl-8': icon,
               'border-danger': error,
@@ -58,7 +58,7 @@ const Input = (
         />
       </div>
       {helperText && (
-        <span className={cn('text-xs text-primary', { 'text-danger': error })}>
+        <span className={cn('text-gray-50', { 'text-danger': error })}>
           {helperText}
         </span>
       )}
