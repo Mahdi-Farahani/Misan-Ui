@@ -6,6 +6,7 @@ export interface IInputProps extends ComponentPropsWithRef<'input'> {
     label?: string;
     icon?: ReactNode;
     labelClassName?: string;
+    isCurrency?:boolean
   }
  export interface ButtonProps {
     children: ReactNode;

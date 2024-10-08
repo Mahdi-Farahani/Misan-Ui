@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "../utils/index";
 import { IInputProps } from "@/types";
+import { formatNumber } from "@/utils/addComma";
 
 const TextInput = ({
   error,
@@ -9,6 +10,7 @@ const TextInput = ({
   disabled,
   name,
   icon,
+  isCurrency,
   className,
   labelClassName,
   dir = "ltr",
@@ -18,10 +20,7 @@ const TextInput = ({
   return (
     <div className="flex flex-col w-full">
       {label && (
-        <label
-          className={`${labelClassName}`}
-          htmlFor={name}
-        >
+        <label className={`${labelClassName}`} htmlFor={name}>
           {label}
         </label>
       )}
@@ -32,6 +31,9 @@ const TextInput = ({
           </div>
         )}
         <input
+          onChange={(e) =>
+            isCurrency ? formatNumber(e.target.value) : e.target.value
+          }
           className={cn(
             "px-2 py-1 border border-gray-300",
             {
