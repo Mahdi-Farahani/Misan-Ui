@@ -1,34 +1,25 @@
-import React, { ComponentPropsWithRef, ForwardedRef, ReactNode } from 'react';
+import React from "react";
 import { cn } from "../utils/index";
+import { IInputProps } from "@/types";
 
-interface IInputProps extends ComponentPropsWithRef<'input'> {
-  error?: boolean;
-  helperText?: string;
-  label?: string;
-  icon?: ReactNode;
-  labelClassName?: string;
-}
-
-const Input = (
-  {
-    error,
-    helperText,
-    label,
-    disabled,
-    name,
-    icon,
-    className,
-    labelClassName,
-    dir = 'ltr',
-    ...rest
-  }: IInputProps,
-  ref: ForwardedRef<HTMLInputElement>
-) => {
+const TextInput = ({
+  error,
+  helperText,
+  label,
+  disabled,
+  name,
+  icon,
+  className,
+  labelClassName,
+  dir = "ltr",
+  ref,
+  ...rest
+}: IInputProps) => {
   return (
     <div className="flex flex-col w-full">
       {label && (
         <label
-          className={`mb-0 text-right text-sm text-black ${labelClassName}`}
+          className={`${labelClassName}`}
           htmlFor={name}
         >
           {label}
@@ -41,28 +32,28 @@ const Input = (
           </div>
         )}
         <input
-          {...rest}
           className={cn(
-            'px-2 py-1 border border-green-800',
+            "px-2 py-1 border border-gray-300",
             {
-              'pl-8': icon,
-              'border-danger': error,
-              'bg-lightGray': disabled,
-              'placeholder:text-right': dir === 'rtl',
-              'placeholder:text-left': dir === 'ltr',
-              'text-left': dir === 'ltr',
+              "pl-8": icon,
+              "border-danger": error,
+              "bg-lightGray": disabled,
+              "placeholder:text-right": dir === "rtl",
+              "placeholder:text-left": dir === "ltr",
+              "text-left": dir === "ltr",
             },
             className
           )}
           ref={ref}
+          {...rest}
         />
       </div>
       {helperText && (
-        <span className={cn('text-gray-50', { 'text-danger': error })}>
+        <span className={cn("text-gray-50", { "text-danger": error })}>
           {helperText}
         </span>
       )}
     </div>
   );
 };
-export const TextInput = React.forwardRef<HTMLInputElement, IInputProps>(Input);
+export default TextInput;
